@@ -1,10 +1,12 @@
+use serde::{Deserialize, Serialize};
 use std::cmp;
 use std::fmt;
 use std::mem;
 
 /// Card rank or value.
 /// This is basically the face value - 2
-#[derive(PartialEq, PartialOrd, Eq, Ord, Debug, Clone, Copy, Hash)]
+#[derive(PartialEq, PartialOrd, Eq, Ord, Debug, Clone, Copy, Hash, Serialize, Deserialize)]
+#[repr(u8)]
 pub enum Value {
     /// 2
     Two = 0,
@@ -144,7 +146,8 @@ impl Value {
 /// Enum for the four different suits.
 /// While this has support for ordering it's not
 /// sensical. The sorting is only there to allow sorting cards.
-#[derive(PartialEq, PartialOrd, Eq, Ord, Debug, Clone, Copy, Hash)]
+#[derive(PartialEq, PartialOrd, Eq, Ord, Debug, Clone, Copy, Hash, Serialize, Deserialize)]
+#[repr(u8)]
 pub enum Suit {
     /// Spades
     Spade = 0,
@@ -234,7 +237,7 @@ impl Suit {
 
 /// The main struct of this library.
 /// This is a carrier for Suit and Value combined.
-#[derive(PartialEq, PartialOrd, Eq, Ord, Debug, Clone, Copy, Hash)]
+#[derive(PartialEq, PartialOrd, Eq, Ord, Debug, Clone, Copy, Hash, Serialize, Deserialize)]
 pub struct Card {
     /// The face value of this card.
     pub value: Value,
